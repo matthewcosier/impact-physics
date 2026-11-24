@@ -1,0 +1,602 @@
+{
+  "version": 1,
+  "status": "Illustrative engineering assumptions at room temperature. No identified vehicle grade, batch, conditioning or physical calibration.",
+  "units": {
+    "density": "kg/m³",
+    "E": "Pa",
+    "G": "Pa",
+    "yieldStress": "Pa",
+    "compressionYield": "Pa",
+    "ultimate": "Pa",
+    "fractureStrain": "engineering strain",
+    "damping": "ratio",
+    "typicalThickness": "m",
+    "compressionCurve": "[positive compressive strain, Pa]",
+    "recoverySeconds": "s",
+    "transverseRatio": "ratio",
+    "compressionRatio": "ratio",
+    "crushFraction": "ratio",
+    "toeStrain": "strain",
+    "crushOnset": "strain",
+    "compressionLimit": "strain",
+    "bulkModulus": "Pa"
+  },
+  "materials": {
+    "panel": {
+      "name": "Tough outer plastic",
+      "law": "ductile",
+      "application": "Default front outer skins and removable covers",
+      "density": 1000,
+      "E": 1550000000.0,
+      "G": 550000000.0,
+      "yieldStress": 25000000.0,
+      "compressionYield": 19000000.0,
+      "ultimate": 40000000.0,
+      "fractureStrain": 0.32,
+      "damping": 0.09,
+      "typicalThickness": 0.0026
+    },
+    "lens": {
+      "name": "Polycarbonate lens plastic",
+      "law": "ductile",
+      "application": "Default clear headlamp covers",
+      "density": 1200,
+      "E": 2350000000.0,
+      "G": 860000000.0,
+      "yieldStress": 62000000.0,
+      "compressionYield": 68000000.0,
+      "ultimate": 72000000.0,
+      "fractureStrain": 0.18,
+      "damping": 0.065,
+      "typicalThickness": 0.0026
+    },
+    "carrier": {
+      "name": "Glass-filled carrier plastic",
+      "law": "ductile",
+      "application": "Lamp housings and structural mouldings",
+      "density": 1340,
+      "E": 4400000000.0,
+      "G": 1620000000.0,
+      "yieldStress": 67000000.0,
+      "compressionYield": 65000000.0,
+      "ultimate": 94000000.0,
+      "fractureStrain": 0.07,
+      "damping": 0.09,
+      "typicalThickness": 0.0025
+    },
+    "abs": {
+      "name": "ABS trim",
+      "law": "ductile",
+      "application": "Rigid interior trim and switch bezels",
+      "density": 1050,
+      "E": 2100000000.0,
+      "G": 770000000.0,
+      "yieldStress": 39000000.0,
+      "compressionYield": 42000000.0,
+      "ultimate": 49000000.0,
+      "fractureStrain": 0.14,
+      "damping": 0.075,
+      "typicalThickness": 0.0021000000000000003
+    },
+    "pcabs": {
+      "name": "PC/ABS blend",
+      "law": "ductile",
+      "application": "Instrument cluster shrouds",
+      "density": 1130,
+      "E": 2350000000.0,
+      "G": 860000000.0,
+      "yieldStress": 49000000.0,
+      "compressionYield": 52000000.0,
+      "ultimate": 62000000.0,
+      "fractureStrain": 0.21,
+      "damping": 0.082,
+      "typicalThickness": 0.0023
+    },
+    "nylon": {
+      "name": "Unfilled nylon",
+      "law": "ductile",
+      "application": "Snap clips, guides and bush carriers",
+      "density": 1140,
+      "E": 1900000000.0,
+      "G": 700000000.0,
+      "yieldStress": 48000000.0,
+      "compressionYield": 51000000.0,
+      "ultimate": 72000000.0,
+      "fractureStrain": 0.28,
+      "damping": 0.095,
+      "typicalThickness": 0.0018
+    },
+    "pom": {
+      "name": "Acetal",
+      "law": "ductile",
+      "application": "Latch sliders and low-friction bushes",
+      "density": 1410,
+      "E": 2850000000.0,
+      "G": 1050000000.0,
+      "yieldStress": 58000000.0,
+      "compressionYield": 64000000.0,
+      "ultimate": 74000000.0,
+      "fractureStrain": 0.19,
+      "damping": 0.06,
+      "typicalThickness": 0.002
+    },
+    "pmma": {
+      "name": "Acrylic optic",
+      "law": "brittle",
+      "application": "Alternative lamp light guides",
+      "density": 1180,
+      "E": 3080000000.0,
+      "G": 1150000000.0,
+      "yieldStress": 62000000.0,
+      "compressionYield": 105000000.0,
+      "ultimate": 62000000.0,
+      "fractureStrain": 0.021,
+      "damping": 0.038,
+      "typicalThickness": 0.0025
+    },
+    "glass": {
+      "name": "Mineral glass",
+      "law": "brittle",
+      "application": "Single glass ply and diagnostic coupons",
+      "density": 2500,
+      "E": 70000000000.0,
+      "G": 29000000000.0,
+      "yieldStress": 48000000.0,
+      "compressionYield": 650000000.0,
+      "ultimate": 48000000.0,
+      "fractureStrain": 0.0007,
+      "damping": 0.022,
+      "typicalThickness": 0.0032
+    },
+    "steel": {
+      "name": "Steel hardware",
+      "law": "ductile",
+      "application": "Bolts, pins, screens and metal retainers",
+      "density": 7800,
+      "E": 200000000000.0,
+      "G": 77000000000.0,
+      "yieldStress": 350000000.0,
+      "compressionYield": 350000000.0,
+      "ultimate": 540000000.0,
+      "fractureStrain": 0.2,
+      "damping": 0.045,
+      "typicalThickness": 0.002,
+      "solidLaw": "J2"
+    },
+    "mildSteel": {
+      "name": "Forming steel",
+      "law": "ductile",
+      "application": "Reference chassis section and stamped brackets",
+      "density": 7850,
+      "E": 208000000000.0,
+      "G": 80000000000.0,
+      "yieldStress": 225000000.0,
+      "compressionYield": 225000000.0,
+      "ultimate": 355000000.0,
+      "fractureStrain": 0.27,
+      "damping": 0.04,
+      "typicalThickness": 0.0016,
+      "solidLaw": "J2"
+    },
+    "hsla": {
+      "name": "High-strength low-alloy steel",
+      "law": "ductile",
+      "application": "Alternative rail and reinforcement stock",
+      "density": 7850,
+      "E": 206000000000.0,
+      "G": 79000000000.0,
+      "yieldStress": 460000000.0,
+      "compressionYield": 460000000.0,
+      "ultimate": 620000000.0,
+      "fractureStrain": 0.17,
+      "damping": 0.038,
+      "typicalThickness": 0.0014,
+      "solidLaw": "J2"
+    },
+    "spring": {
+      "name": "Spring steel",
+      "law": "ductile",
+      "application": "Retaining springs and clips",
+      "density": 7850,
+      "E": 205000000000.0,
+      "G": 79000000000.0,
+      "yieldStress": 1050000000.0,
+      "compressionYield": 1050000000.0,
+      "ultimate": 1370000000.0,
+      "fractureStrain": 0.06,
+      "damping": 0.022,
+      "typicalThickness": 0.00095,
+      "solidLaw": "J2"
+    },
+    "alSheet": {
+      "name": "Formable aluminium sheet",
+      "law": "ductile",
+      "application": "Alternative closure skin or heat shield",
+      "density": 2700,
+      "E": 69000000000.0,
+      "G": 26000000000.0,
+      "yieldStress": 135000000.0,
+      "compressionYield": 135000000.0,
+      "ultimate": 255000000.0,
+      "fractureStrain": 0.19,
+      "damping": 0.045,
+      "typicalThickness": 0.0013,
+      "solidLaw": "J2"
+    },
+    "alRail": {
+      "name": "Extruded aluminium",
+      "law": "ductile",
+      "application": "Extruded rail or bumper reinforcement coupon",
+      "density": 2700,
+      "E": 69500000000.0,
+      "G": 26000000000.0,
+      "yieldStress": 220000000.0,
+      "compressionYield": 220000000.0,
+      "ultimate": 275000000.0,
+      "fractureStrain": 0.105,
+      "damping": 0.04,
+      "typicalThickness": 0.0024,
+      "solidLaw": "J2"
+    },
+    "brass": {
+      "name": "Brass contact stock",
+      "law": "ductile",
+      "application": "Electrical terminals and small bushes",
+      "density": 8500,
+      "E": 102000000000.0,
+      "G": 38000000000.0,
+      "yieldStress": 205000000.0,
+      "compressionYield": 205000000.0,
+      "ultimate": 345000000.0,
+      "fractureStrain": 0.22,
+      "damping": 0.04,
+      "typicalThickness": 0.00055,
+      "solidLaw": "J2"
+    },
+    "copper": {
+      "name": "Copper conductor",
+      "law": "ductile",
+      "application": "Plastically deforming conductor coupon",
+      "density": 8910,
+      "E": 112000000000.0,
+      "G": 43000000000.0,
+      "yieldStress": 76000000.0,
+      "compressionYield": 76000000.0,
+      "ultimate": 215000000.0,
+      "fractureStrain": 0.35,
+      "damping": 0.042,
+      "typicalThickness": 0.001,
+      "solidLaw": "J2"
+    },
+    "carbon": {
+      "name": "Woven carbon laminate",
+      "law": "laminate",
+      "application": "Woven composite duct or trial body panel",
+      "density": 1550,
+      "E": 54000000000.0,
+      "G": 4100000000.0,
+      "yieldStress": 520000000.0,
+      "compressionYield": 380000000.0,
+      "ultimate": 520000000.0,
+      "fractureStrain": 0.011,
+      "damping": 0.047,
+      "typicalThickness": 0.002,
+      "transverseRatio": 0.83
+    },
+    "gfrp": {
+      "name": "Glass-fibre laminate",
+      "law": "laminate",
+      "application": "Composite fairing and shield",
+      "density": 1850,
+      "E": 23500000000.0,
+      "G": 3950000000.0,
+      "yieldStress": 255000000.0,
+      "compressionYield": 165000000.0,
+      "ultimate": 255000000.0,
+      "fractureStrain": 0.013,
+      "damping": 0.066,
+      "typicalThickness": 0.0028,
+      "transverseRatio": 0.69
+    },
+    "seal": {
+      "name": "Elastomer seal",
+      "law": "elastomer",
+      "application": "Headlamp perimeter gasket",
+      "density": 1120,
+      "E": 9000000.0,
+      "G": 3000000.0,
+      "yieldStress": 6000000.0,
+      "compressionYield": 5000000.0,
+      "ultimate": 12000000.0,
+      "fractureStrain": 1.1,
+      "damping": 0.18,
+      "typicalThickness": 0.003,
+      "recoverySeconds": 0.12,
+      "compressionLimit": 0.55,
+      "bulkModulus": 150000000.0,
+      "solidLaw": "neo-Hookean"
+    },
+    "bushing": {
+      "name": "Suspension bushing rubber",
+      "law": "elastomer",
+      "application": "Compliant mount isolator",
+      "density": 1170,
+      "E": 16000000.0,
+      "G": 5350000.0,
+      "yieldStress": 8000000.0,
+      "compressionYield": 8000000.0,
+      "ultimate": 18000000.0,
+      "fractureStrain": 0.92,
+      "damping": 0.21,
+      "typicalThickness": 0.008,
+      "recoverySeconds": 0.18,
+      "compressionLimit": 0.48,
+      "bulkModulus": 267500000.0,
+      "solidLaw": "neo-Hookean"
+    },
+    "silicone": {
+      "name": "Silicone rubber",
+      "law": "elastomer",
+      "application": "Weather and electrical seals",
+      "density": 1140,
+      "E": 4800000.0,
+      "G": 1600000.0,
+      "yieldStress": 3000000.0,
+      "compressionYield": 3000000.0,
+      "ultimate": 8000000.0,
+      "fractureStrain": 1.35,
+      "damping": 0.16,
+      "typicalThickness": 0.0025,
+      "recoverySeconds": 0.09,
+      "compressionLimit": 0.6,
+      "bulkModulus": 80000000.0,
+      "solidLaw": "neo-Hookean"
+    },
+    "leather": {
+      "name": "Upholstery leather",
+      "law": "membrane",
+      "application": "Seat cover, along or across the hide",
+      "density": 880,
+      "E": 44000000.0,
+      "G": 9000000.0,
+      "ultimate": 17000000.0,
+      "fractureStrain": 0.48,
+      "damping": 0.18,
+      "typicalThickness": 0.0013,
+      "transverseRatio": 0.59,
+      "toeStrain": 0.055,
+      "compressionRatio": 0.002
+    },
+    "vinyl": {
+      "name": "Vinyl upholstery",
+      "law": "membrane",
+      "application": "Dash wrap and alternative seat cover",
+      "density": 1240,
+      "E": 29000000.0,
+      "G": 6400000.0,
+      "ultimate": 11000000.0,
+      "fractureStrain": 0.64,
+      "damping": 0.18,
+      "typicalThickness": 0.00092,
+      "transverseRatio": 0.87,
+      "toeStrain": 0.038,
+      "compressionRatio": 0.004
+    },
+    "textile": {
+      "name": "Woven seat fabric",
+      "law": "membrane",
+      "application": "Anisotropic seat facing",
+      "density": 520,
+      "E": 92000000.0,
+      "G": 4000000.0,
+      "ultimate": 27000000.0,
+      "fractureStrain": 0.35,
+      "damping": 0.18,
+      "typicalThickness": 0.00082,
+      "transverseRatio": 0.62,
+      "toeStrain": 0.072,
+      "compressionRatio": 0.001
+    },
+    "webbing": {
+      "name": "Polyester webbing",
+      "law": "membrane",
+      "application": "Webbing material coupon, independent of stitching",
+      "density": 930,
+      "E": 360000000.0,
+      "G": 11000000.0,
+      "ultimate": 118000000.0,
+      "fractureStrain": 0.36,
+      "damping": 0.18,
+      "typicalThickness": 0.0012,
+      "transverseRatio": 0.19,
+      "toeStrain": 0.035,
+      "compressionRatio": 0.0004
+    },
+    "seatFoam": {
+      "name": "Soft seat foam",
+      "law": "foam",
+      "application": "Cushion comfort layer",
+      "density": 48,
+      "E": 26000.0,
+      "typicalThickness": 0.075,
+      "compressionCurve": [
+        [
+          0,
+          0
+        ],
+        [
+          0.1,
+          2600.0
+        ],
+        [
+          0.25,
+          4700.0
+        ],
+        [
+          0.5,
+          8500.0
+        ],
+        [
+          0.65,
+          18000
+        ],
+        [
+          0.77,
+          75000
+        ],
+        [
+          0.85,
+          240000
+        ]
+      ],
+      "recoverySeconds": 0.65,
+      "crushFraction": 0.08,
+      "crushOnset": 0.58
+    },
+    "bolsterFoam": {
+      "name": "Firm bolster foam",
+      "law": "foam",
+      "application": "Seat side bolster and support layer",
+      "density": 69,
+      "E": 52000.0,
+      "typicalThickness": 0.048,
+      "compressionCurve": [
+        [
+          0,
+          0
+        ],
+        [
+          0.1,
+          5200.0
+        ],
+        [
+          0.25,
+          9600.0
+        ],
+        [
+          0.5,
+          17000
+        ],
+        [
+          0.65,
+          42000
+        ],
+        [
+          0.77,
+          140000
+        ],
+        [
+          0.85,
+          410000
+        ]
+      ],
+      "recoverySeconds": 0.42,
+      "crushFraction": 0.1,
+      "crushOnset": 0.57
+    },
+    "dashFoam": {
+      "name": "Semi-rigid dash foam",
+      "law": "foam",
+      "application": "Padded instrument panel",
+      "density": 115,
+      "E": 150000.0,
+      "typicalThickness": 0.009,
+      "compressionCurve": [
+        [
+          0,
+          0
+        ],
+        [
+          0.1,
+          15000
+        ],
+        [
+          0.25,
+          29000
+        ],
+        [
+          0.5,
+          53000
+        ],
+        [
+          0.65,
+          102000
+        ],
+        [
+          0.77,
+          285000
+        ],
+        [
+          0.85,
+          690000
+        ]
+      ],
+      "recoverySeconds": 0.26,
+      "crushFraction": 0.29,
+      "crushOnset": 0.38
+    },
+    "absorber": {
+      "name": "Crushable absorber foam",
+      "law": "foam",
+      "application": "Energy absorber behind fascia or trim",
+      "density": 85,
+      "E": 916666.6666666667,
+      "typicalThickness": 0.05,
+      "compressionCurve": [
+        [
+          0,
+          0
+        ],
+        [
+          0.06,
+          55000
+        ],
+        [
+          0.2,
+          135000
+        ],
+        [
+          0.45,
+          210000
+        ],
+        [
+          0.65,
+          440000
+        ],
+        [
+          0.76,
+          900000
+        ],
+        [
+          0.84,
+          1900000
+        ]
+      ],
+      "recoverySeconds": 0.14,
+      "crushFraction": 0.76,
+      "crushOnset": 0.12
+    }
+  },
+  "labels": {
+    "law": "Response law",
+    "density": "Density",
+    "E": "Young’s modulus",
+    "G": "Shear modulus",
+    "yieldStress": "Nominal tensile yield",
+    "compressionYield": "Nominal compressive limit",
+    "ultimate": "Nominal tensile strength",
+    "fractureStrain": "Nominal fracture strain",
+    "damping": "Cage damping ratio",
+    "typicalThickness": "Example thickness",
+    "compressionCurve": "Compression curve",
+    "recoverySeconds": "Free recovery time constant",
+    "compressionLimit": "Compression test limit",
+    "toeStrain": "Take-up strain",
+    "compressionRatio": "Slack stiffness ratio",
+    "transverseRatio": "Across / along ratio",
+    "crushFraction": "Retained crush fraction above onset",
+    "crushOnset": "Permanent crush onset",
+    "bulkModulus": "Bulk modulus (3D elastic solid)",
+    "solidLaw": "3D solid law"
+  }
+}

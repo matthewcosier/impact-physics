@@ -1,0 +1,4 @@
+node_modules/
+*.tgz
+beams.wasm
+.DS_Store
