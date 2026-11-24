@@ -186,3 +186,39 @@ test('the one millisecond load reading integrates force over the same physical t
     near(w.peakMeanForce, peak, 1e-8);
   }
 });
+
+test('small-scale models can select a physical contact margin and use a transverse guide', async () => {
+  const { buildLattice } = await import('../src/lattice.js');
+  const { surfaceCells } = await import('../src/wall-contact.js');
+  const { materials } = await import('../src/materials.js');
+  const model = { nodes: [], beams: [] };
+  const cage = { origin: [0, 0, 0], cell: [0.002, 0.002, 0.002], counts: [1, 1, 1], occupied: [[0, 0, 0]] };
+  const part = buildLattice(model, {
+    id: 'coupon',
+    material: materials.panel,
+    mass: 0.1,
+    volumeOfMaterial: 1e-10,
+    cage,
+  });
+  part.objects = [{ positions: 0, vertices: 1 }];
+  model.surfaceCells = surfaceCells([part], new Float32Array([0.001, 0, 0.001]).buffer);
+  const spec = {
+    shape: 'sphere',
+    center: [0.001, -0.0013, 0.001],
+    radius: 0.001,
+    angle: 90,
+    mass: 1,
+    speed: 0.01,
+    stiffness: 100,
+    damping: 0.2,
+    surfaceMargin: 0,
+    approachTime: 0,
+  };
+  const w = new ImpactWorld(model, createImpactor(spec));
+  for (let i = 0; i < 100; i++) w.step();
+  assert.equal(w.contactImpulse, 0);
+  for (let i = 0; i < 500; i++) w.step();
+  assert.ok(w.contactImpulse > 0 && w.impactor.y > spec.center[1]);
+  near(w.impactor.x, spec.center[0]);
+  assert.throws(() => createImpactor({ ...spec, surfaceMargin: -0.001 }), RangeError);
+});

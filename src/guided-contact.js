@@ -10,7 +10,7 @@ export class GuidedContact {
     this.h = new Float64Array(24);
     this.rest = Float64Array.from(w.model.nodes.flatMap((n) => n.position));
     // A 2 mm contact skin covers the chord sag between nearby curved contacts.
-    this.shape = { ...w.impactor, pad: 0.002 };
+    this.shape = { ...w.impactor, pad: w.impactor.surfaceMargin ?? 0.002 };
     this.extents = [
       horizontalExtent(this.shape, 0),
       horizontalExtent(this.shape, 1),
@@ -19,8 +19,11 @@ export class GuidedContact {
     // Resolve normal approach over a short physical rise time as skin and
     // backing engage. This avoids assigning a finite momentum jump to one
     // arbitrarily short integration step. The present pose is checked too.
-    this.horizon = 0.003;
+    this.horizon = w.impactor.approachTime ?? 0.003;
+    if (![this.shape.pad, this.horizon].every((x) => Number.isFinite(x) && x >= 0))
+      throw new RangeError('Expected nonnegative contact skin thickness and prediction time');
     this.extents = this.extents.map((v) => v + this.shape.pad);
+    this.horizons = this.horizon ? [0, this.horizon] : [0];
     this.cache = -1;
     this.normal = [0, 0, 0];
   }
@@ -108,7 +111,7 @@ export class GuidedContact {
     }
     for (let pass = 0; pass < 64; pass++) {
       let changed = false;
-      for (const horizon of [0, this.horizon]) {
+      for (const horizon of this.horizons) {
         const fraction = w.dt / (w.dt + horizon);
         for (const cell of this.active) {
           if (!this.possible(w, cell.nodes, 0, horizon)) continue;

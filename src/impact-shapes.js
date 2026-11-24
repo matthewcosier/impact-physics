@@ -8,6 +8,8 @@ export function createImpactor({
   stiffness,
   damping,
   pad = 0,
+  surfaceMargin = 0.002,
+  approachTime = 0.003,
   radius,
   height,
   width,
@@ -15,8 +17,10 @@ export function createImpactor({
 }) {
   if (!Array.isArray(center) || center.length !== 3 || !center.every(Number.isFinite))
     throw new RangeError('Expected a finite three-dimensional impactor centre');
-  if (!Number.isFinite(angle) || Math.abs(angle) > 45 || (shape === 'wall' && angle !== 0))
-    throw new RangeError('Expected a guide angle within 45 degrees or a head-on wall');
+  if (!Number.isFinite(angle) || (shape === 'wall' && angle !== 0))
+    throw new RangeError('Expected a finite guide angle or a head-on wall');
+  if (![surfaceMargin, approachTime].every((x) => Number.isFinite(x) && x >= 0))
+    throw new RangeError('Expected nonnegative contact margin and prediction time');
   const yaw = (angle * Math.PI) / 180;
   return {
     shape,
@@ -31,6 +35,8 @@ export function createImpactor({
     k: stiffness,
     damping,
     pad,
+    surfaceMargin,
+    approachTime,
     radius,
     height,
     width,
