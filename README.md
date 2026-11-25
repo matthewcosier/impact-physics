@@ -54,7 +54,7 @@ function display(world) {
 }
 ```
 
-Use a simulation clock or worker to advance the solver independently of display refresh. Increasing the timestep changes numerical stability. Refine it and compare impact impulse, maximum force, deformation and energy balance for each new model.
+Use a simulation clock or worker to advance the solver independently of display refresh. The contact solver caches nearby witnesses using movement bounds on their actual interpolation weights. Changing the numerical timestep changes stability. Refine it and compare impact impulse, maximum force, deformation and energy balance for each new model.
 
 ## Contact and deformation
 

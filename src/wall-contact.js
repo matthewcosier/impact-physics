@@ -36,6 +36,8 @@ export class WallContact {
   constructor(world, cells, points) {
     this.cells = cells;
     this.points = points;
+    this.weightBounds = points.map((p) => p.weights.reduce((sum, v) => sum + Math.abs(v), 0));
+    this.generation = -1;
     this.restX = Float64Array.from(world.model.nodes, (n) => n.position[0]);
     this.x = new Float64Array(this.restX.length);
     this.corner = new Float64Array(8);
@@ -47,6 +49,17 @@ export class WallContact {
     for (let i = 0; i < x.length; i++) x[i] = this.restX[i] + w.q[3 * i];
     const normal = [1, 0, 0];
     for (let pass = 0; pass < 96; pass++) {
+      // A chassis skin can contain thousands of affine material points. An
+      // L1 weight bound also covers points extrapolated beyond their nodes.
+      const generation = w.refreshContactBounds();
+      if (generation !== this.generation) {
+        this.activePoints = this.points.filter((p, i) => {
+          let x = p.position[0];
+          for (let j = 0; j < p.nodes.length; j++) x += p.weights[j] * w.q[3 * p.nodes[j]];
+          return x <= plane + 2.1 * w.contactMargin * this.weightBounds[i];
+        });
+        this.generation = generation;
+      }
       let applied = false;
       for (const { nodes, uvw } of this.cells) {
         let min = Infinity;
@@ -80,7 +93,7 @@ export class WallContact {
           applied = true;
         }
       }
-      for (const p of this.points) {
+      for (const p of this.activePoints) {
         let s = p.position[0];
         for (let j = 0; j < p.nodes.length; j++) s += p.weights[j] * w.q[3 * p.nodes[j]];
         if (s < plane - 1e-8) {
